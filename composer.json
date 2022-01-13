@@ -1,6 +1,9 @@
 {
     "name": "echo-zjs/agora-sdk",
     "description": "php agora sdk",
+    "license": "MIT",
+    "keywords": ["agora"],
+    "homepage": "https://github.com/enjoy-it/php-agora-sdk",
     "require": {
         "hanson/foundation-sdk": "^3.0",
         "php": ">=7.1",
