@@ -1,0 +1,22 @@
+{
+    "name": "echo-zjs/agora-sdk",
+    "description": "php agora sdk",
+    "require": {
+        "hanson/foundation-sdk": "^3.0",
+        "php": ">=7.1",
+        "ext-json": ">=1.0"
+    },
+    "authors": [
+        {
+            "name": "zjs"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "EchoZjs\\Agora\\": "src"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    }
+}
