@@ -25,8 +25,8 @@ class Api extends AbstractAPI
      */
     public function request(string $method, string $uri, array $params = [])
     {
-        $version = $this->app->getConfig('version') ?? '';
-        $base_url = isset($this->app->version) ? self::BASE_URL . "/{$version}" : self::BASE_URL;
+        $version = $this->app->getConfig('version');
+        $base_url = isset($version) ? self::BASE_URL . "/{$version}" : self::BASE_URL;
         $type    = $method === 'GET' ? RequestOptions::QUERY : RequestOptions::JSON;
         $options = [
             $type                => $params,
