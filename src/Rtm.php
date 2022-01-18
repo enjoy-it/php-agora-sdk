@@ -11,6 +11,7 @@ class Rtm extends Api
     /**
      * 发送Rtm Channel消息
      *
+     * @param string $token
      * @param int    $uid
      * @param int    $to_uid
      * @param string $message
@@ -20,19 +21,24 @@ class Rtm extends Api
      *
      * @return array
      */
-    public function sendMessage($uid, $to_uid, $message, bool $offline = true, bool $save_history = false, bool $wait_for_ack = false)
+    public function sendMessage($token, $uid, $to_uid, $message, bool $offline = true, bool $save_history = false, bool $wait_for_ack = false)
     {
-        return $this->request('POST', "/rtm/users/{$uid}/peer_messages?wait_for_ack={$wait_for_ack}", [
+        $appid = $this->app->getConfig('id');
+        return $this->request('POST', "/project/{$appid}/rtm/users/{$uid}/peer_messages?wait_for_ack={$wait_for_ack}", [
             'destination'                 => $to_uid,
             'enable_offline_messaging'    => $offline,
             'enable_historical_messaging' => $save_history,
             'payload'                     => $message,
+        ], [
+            'x-agora-token' => $token,
+            'x-agora-uid'   => $uid,
         ]);
     }
 
     /**
      * 发送Rtm Channel消息
      *
+     * @param string $token
      * @param int    $uid
      * @param string $channel_name
      * @param string $message
@@ -40,12 +46,16 @@ class Rtm extends Api
      *
      * @return array
      */
-    public function sendChannelMessage($uid, $channel_name, string $message, bool $save_history = false)
+    public function sendChannelMessage($token, $uid, $channel_name, string $message, bool $save_history = false)
     {
-        return $this->request('POST', "/rtm/users/{$uid}/channel_messages", [
+        $appid = $this->app->getConfig('id');
+        return $this->request('POST', "/project/{$appid}/rtm/users/{$uid}/channel_messages", [
             'channel_name'                => $channel_name,
             'enable_historical_messaging' => $save_history,
             'payload'                     => $message,
+        ], [
+            'x-agora-token' => $token,
+            'x-agora-uid'   => $uid,
         ]);
     }
 }
