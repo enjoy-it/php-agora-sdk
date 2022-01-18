@@ -2,8 +2,8 @@
 
 namespace EchoZjs\Agora;
 
-use Hanson\Foundation\Foundation;
 use EchoZjs\Agora\Auth\SimpleTokenBuilder;
+use Hanson\Foundation\Foundation;
 
 /**
  * Class Agora
@@ -13,6 +13,7 @@ use EchoZjs\Agora\Auth\SimpleTokenBuilder;
  * @property Channel            $channel
  * @property KickingRule        $kicking_rule
  * @property SimpleTokenBuilder $token
+ * @property Rtm                $rtm
  *
  * @package EchoZjs\Agora
  */

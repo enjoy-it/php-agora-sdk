@@ -2,9 +2,9 @@
 
 namespace EchoZjs\Agora;
 
+use EchoZjs\Agora\Auth\SimpleTokenBuilder;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
-use EchoZjs\Agora\Auth\SimpleTokenBuilder;
 
 class ServiceProvider implements ServiceProviderInterface
 {
@@ -19,11 +19,14 @@ class ServiceProvider implements ServiceProviderInterface
         $pimple['kicking_rule'] = function (Agora $agora) {
             return new KickingRule($agora);
         };
-        $pimple['token'] = function (Agora $agora) {
+        $pimple['token']        = function (Agora $agora) {
             return new SimpleTokenBuilder($agora);
         };
-        $pimple['channel'] = function (Agora $agora) {
+        $pimple['channel']      = function (Agora $agora) {
             return new Channel($agora);
+        };
+        $pimple['rtm']          = function (Agora $agora) {
+            return new Rtm($agora);
         };
     }
 
